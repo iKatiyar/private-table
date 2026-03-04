@@ -2,12 +2,18 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { Playfair_Display } from "next/font/google";
+import { Playfair_Display, DM_Sans } from "next/font/google";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
+  display: "swap",
+});
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
@@ -126,25 +132,35 @@ export default function LandingPage() {
             {
               icon: "🌹",
               label: "Romance",
-              text: "Somewhere intimate & candlelit for a first anniversary — quiet, French or Italian, under $60",
+              text: "Candlelit, quiet, French or Italian, under $60",
             },
             {
               icon: "💼",
               label: "Business",
-              text: "A polished spot for a client lunch downtown — good wine list, not too loud, easy parking",
+              text: "Upscale client lunch, good wine, not too loud",
             },
             {
               icon: "🎂",
               label: "Celebration",
-              text: "Birthday dinner for 6, lively atmosphere, great cocktails, rooftop or terrace preferred",
+              text: "Birthday dinner for 6, rooftop, great cocktails",
             },
           ].map((example) => (
-            <div key={example.text} style={{ border: "1px solid rgba(201,169,110,0.15)", padding: "1rem 1.1rem", textAlign: "left", background: "rgba(0,0,0,0.45)", backdropFilter: "blur(8px)" }}>
-              <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", marginBottom: "0.5rem" }}>
+            <div key={example.text} style={{
+              position: "relative",
+              border: "1px solid rgba(201,169,110,0.35)",
+              padding: "1.1rem 1.1rem 1.2rem",
+              textAlign: "left",
+              background: "rgba(10,8,4,0.22)",
+              backdropFilter: "blur(12px)",
+              overflow: "hidden",
+            }}>
+              {/* Gold top accent line */}
+              <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: "linear-gradient(to right, transparent, #c9a96e, transparent)" }} />
+              <div style={{ display: "flex", alignItems: "center", gap: "0.45rem", marginBottom: "0.65rem" }}>
                 <span style={{ fontSize: "0.95rem" }}>{example.icon}</span>
-                <span style={{ color: "#c9a96e", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", fontWeight: 600 }}>{example.label}</span>
+                <span style={{ fontFamily: dmSans.style.fontFamily, color: "#c9a96e", fontSize: "0.85rem", letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700 }}>{example.label}</span>
               </div>
-              <span style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.78rem", fontStyle: "italic", fontWeight: 400, lineHeight: 1.5 }}>
+              <span style={{ fontFamily: dmSans.style.fontFamily, color: "rgba(255,255,255,0.78)", fontSize: "0.97rem", fontWeight: 400, lineHeight: 1.7 }}>
                 &ldquo;{example.text}&rdquo;
               </span>
             </div>
